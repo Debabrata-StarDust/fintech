@@ -1,5 +1,4 @@
 import 'package:fintech/view/bording/onbording_view.dart';
-import 'package:fintech/view/bottom_nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +18,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FINTECH',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-       appBarTheme:const AppBarTheme(
-         color:kWhiteColor,
-       )
-      ),
-      home:const Bottom_Nav_Bar(),
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(
+            color: kWhiteColor,
+          )),
+      home: const OnboardView(),
     );
   }
 }
-

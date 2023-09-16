@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Container CustomTextForm(
-    {required String hintText, required Widget icon, required bool obsecure}) {
+    {required String hintText,
+    required Widget icon,
+    required bool obsecure,
+    TextEditingController? textController}) {
   return Container(
     alignment: Alignment.center,
     width: double.infinity,
@@ -15,6 +18,7 @@ Container CustomTextForm(
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: TextFormField(
+        controller: textController,
         obscureText: obsecure,
         decoration: InputDecoration(
             border: InputBorder.none,
