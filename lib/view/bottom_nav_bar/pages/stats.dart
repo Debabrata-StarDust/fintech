@@ -48,19 +48,22 @@ class _StatsFViewState extends State<StatsFView> {
                   top: 10,
                   right: 10,
                   child: Container(
+                    padding:
+                        const EdgeInsets.only(bottom: 17, right: 10, left: 40),
                     alignment: Alignment.center,
-                    width: 150,
-                    height: 50,
+                    width: 130,
+                    height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: kWhiteColor,
                     ),
                     child: DropdownMenu<String>(
+                      width: 90,
                       trailingIcon: const Icon(Icons.arrow_circle_down),
                       inputDecorationTheme: const InputDecorationTheme(
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
+                        // contentPadding: EdgeInsets.symmetric(
+                        //   horizontal: 10,
+                        // ),
                         border: InputBorder.none,
                       ),
                       initialSelection: newList.first,
@@ -88,14 +91,14 @@ class _StatsFViewState extends State<StatsFView> {
                         style: CustomTextStyle.subtitle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: kBlackColor,
+                          color: kWhiteColor,
                         )),
                     TextSpan(
                         text: "\$ 51,468",
                         style: CustomTextStyle.subtitle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: kBlackColor,
+                          color: kWhiteColor,
                         )),
                   ]),
                 ),

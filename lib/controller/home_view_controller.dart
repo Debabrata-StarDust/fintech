@@ -8,7 +8,7 @@ class HomeViewController extends GetxController {
   listOfTestNavigation(int index) {
     print(index);
     if (index == 0) {
-      Get.to( TransferMoneyView());
+      Get.to( const TransferMoneyView());
     }
     if (index == 1) {
       Get.to(const RequestPaymentView());

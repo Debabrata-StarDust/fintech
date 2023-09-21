@@ -55,13 +55,17 @@ class HomePage extends GetView<HomeViewController> {
           ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(NotificationView());
-            },
-            icon: Image.asset(
-              "assets/icons/bell.png",
-              height: 30,
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: IconButton(
+              onPressed: () {
+                Get.to(NotificationView());
+              },
+              icon: Image.asset(
+                "assets/icons/bell.png",
+                height: 30,
+                color: kPrimaryColor,
+              ),
             ),
           )
         ],
