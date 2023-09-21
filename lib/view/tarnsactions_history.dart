@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../model/demo_data.dart';
+import '../widgets/custom_text_style.dart';
 
 class TransactionsHistory extends StatelessWidget {
   const TransactionsHistory({super.key});
@@ -26,7 +27,7 @@ class TransactionsHistory extends StatelessWidget {
         ),
         title: Text(
           "Transactions History",
-          style: GoogleFonts.roboto(
+          style: CustomTextStyle.subtitle(
             fontWeight: FontWeight.w600,
             color: kBlackColor,
             fontSize: 20,
@@ -42,14 +43,23 @@ class TransactionsHistory extends StatelessWidget {
               return Card(
                 elevation: 1,
                 child: ListTile(
-                  leading: Image.network(
-                    transactionsHistory[index]['image'],
-                    height: 50,
-                    width: 30,
+                  leading: Container(
+                    alignment: Alignment.center,
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.shade50,
+                    ),
+                    child: Image.network(
+                      transactionsHistory[index]['image'],
+                      height: 50,
+                      width: 30,
+                    ),
                   ),
                   title: Text(
                     transactionsHistory[index]['title'],
-                    style: GoogleFonts.roboto(
+                    style: CustomTextStyle.subtitle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
                       color: kBlackColor,
@@ -62,7 +72,7 @@ class TransactionsHistory extends StatelessWidget {
                     children: [
                       Text(
                         transactionsHistory[index]['amount'],
-                        style: GoogleFonts.roboto(
+                        style: CustomTextStyle.subtitle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           color: kBlackColor,
@@ -71,7 +81,7 @@ class TransactionsHistory extends StatelessWidget {
                       //Text(DateTime.now().toString()),
                       Text(
                         transactionsHistory[index]['time'],
-                        style: GoogleFonts.roboto(
+                        style: CustomTextStyle.subtitle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: Colors.grey,

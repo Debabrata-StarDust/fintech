@@ -1,4 +1,7 @@
 import 'package:fintech/core/app_color.dart';
+import 'package:fintech/view/bottom_nav_bar/pages/my_card_view.dart';
+import 'package:fintech/view/bottom_nav_bar/pages/profile_view.dart';
+import 'package:fintech/view/bottom_nav_bar/pages/stats.dart';
 import 'package:fintech/view/tarnsactions_history.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -18,14 +21,15 @@ class _Bottom_Nav_BarState extends State<Bottom_Nav_Bar> {
   List<Widget> _screens() {
     return [
       const HomePage(),
-      const Center(child: Text("Status")),
+      StatsFView(),
       const Center(child: Text("Scan")),
-      const TransactionsHistory(),
-      const Center(child: Text("profile")),
+      MyCardView(),
+      ProfileView()
     ];
   }
 
   @override
+
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,

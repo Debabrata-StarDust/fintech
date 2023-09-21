@@ -5,8 +5,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_padding.dart';
 import '../../widgets/custom_signin_catagory.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/custom_text_style.dart';
+import '../bottom_nav_bar/nav_bar.dart';
+import '../bottom_nav_bar/pages/homepage.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -20,58 +24,40 @@ class LoginView extends StatelessWidget {
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.screenHorizontalPadding),
         children: [
           RichText(
+              textScaleFactor: 1.1,
               text: TextSpan(children: [
-            TextSpan(
-                text: "Fon",
-                style: GoogleFonts.roboto(
-                  fontSize: 27,
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                )),
-            TextSpan(
-                text: "yx",
-                style: GoogleFonts.roboto(
-                  fontSize: 27,
-                  color: kBlackColor,
-                  fontWeight: FontWeight.bold,
-                ))
-          ])),
+                TextSpan(
+                    text: "Fon",
+                    style: CustomTextStyle.title(color: kPrimaryColor)),
+                TextSpan(
+                    text: "yx",
+                    style: CustomTextStyle.title(color: kBlackColor))
+              ])),
           const SizedBox(
             height: 10,
           ),
-          Text(
-            "Sign in your account",
-            style: GoogleFonts.roboto(
-              fontSize: 27,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("Sign in to your account",
+              style: CustomTextStyle.title(color: kBlackColor)),
           const SizedBox(
             height: 10,
           ),
-          Text(
-            "Welcome back! Please enter your details",
-            style: GoogleFonts.roboto(
-              fontSize: 13,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("Welcome back! Please enter your details",
+              style: CustomTextStyle.title(
+                color: kBlackColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              )),
           const SizedBox(
-            height: 35,
+            height: 47,
           ),
-          Text(
-            "Email",
-            style: GoogleFonts.roboto(
-              fontSize: 15,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("Email",
+              style: CustomTextStyle.subtitle(
+                color: kBlackColor,
+              )),
           const SizedBox(
             height: 5,
           ),
@@ -80,16 +66,9 @@ class LoginView extends StatelessWidget {
               icon: const Icon(Icons.mail_outline),
               obsecure: false),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
-          Text(
-            "Password",
-            style: GoogleFonts.roboto(
-              fontSize: 15,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("Password", style: CustomTextStyle.subtitle(color: kBlackColor)),
           const SizedBox(
             height: 5,
           ),
@@ -101,64 +80,58 @@ class LoginView extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {},
-              child: Text(
-                "Forgot Password?",
-                style: GoogleFonts.roboto(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: kPrimaryColor,
-                ),
-              ),
+              child: Text("Forgot Password?",
+                  style: CustomTextStyle.subtitle(color: kPrimaryColor)),
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 11,
           ),
           InkWell(
             borderRadius: BorderRadius.circular(7),
-            onTap: () {},
+            onTap: () {
+              Get.to(const Bottom_Nav_Bar());
+            },
             child: const CustomButton(
               title: "Sign in",
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 28,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                width: 30,
+                width: 37,
               ),
               Expanded(
                 child: Divider(
                   thickness: 2.0,
-                  color: Colors.grey.shade100,
+                  color: Colors.grey.shade300,
                 ),
               ),
               const SizedBox(
                 width: 7,
               ),
-              Text(
-                "Or sign in with",
-                style: GoogleFonts.roboto(
-                  fontSize: 15,
-                  color: kBlackColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              Text("Or sign in with",
+                  style: CustomTextStyle.subtitle(
+                    fontSize: 15,
+                    color: kBlackColor,
+                    fontWeight: FontWeight.w400,
+                  )),
               const SizedBox(
                 width: 7,
               ),
               Expanded(
                 child: Divider(
                   thickness: 2.0,
-                  color: Colors.grey.shade100,
+                  color: Colors.grey.shade300,
                 ),
               ),
               const SizedBox(
-                width: 30,
+                width: 37,
               ),
             ],
           ),
@@ -169,7 +142,7 @@ class LoginView extends StatelessWidget {
               imagePath: "assets/icons/google.png",
               title: "Sign in with Google"),
           const SizedBox(
-            height: 10,
+            height: 17,
           ),
           signIn_catagory(
               imagePath: "assets/icons/twitter.png",
@@ -183,22 +156,14 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Don't have an account?",
-              style: GoogleFonts.roboto(
-                fontSize: 17,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            Text("Don't have account?",
+                style: CustomTextStyle.subtitle(color: kBlackColor)),
             TextButton(
                 onPressed: () {
-                  Get.to(SignUpView());
+                  Get.to(const SignUpView());
                 },
                 child: Text("Sign Up",
-                    style: GoogleFonts.roboto(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                    )))
+                    style: CustomTextStyle.subtitle(color: kPrimaryColor)))
           ],
         ),
       ),

@@ -1,11 +1,13 @@
 import 'package:fintech/core/app_color.dart';
 import 'package:fintech/view/tarnsactions_history.dart';
+import 'package:fintech/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../controller/home_view_controller.dart';
 import '../../../model/demo_data.dart';
+import '../../../widgets/custom_text_style.dart';
 import '../../notification_view.dart';
 
 class HomePage extends GetView<HomeViewController> {
@@ -19,38 +21,37 @@ class HomePage extends GetView<HomeViewController> {
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: false,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Image.asset(
+            "assets/images/woman.png",
+            width: 50,
+            height: 50,
+          ),
+        ),
         title: Row(
           children: [
-            Image.asset(
-              "assets/images/woman.png",
-              width: 50,
-              height: 50,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: RichText(
-                  textAlign: TextAlign.start,
-                  text: TextSpan(children: [
-                    TextSpan(
-                        text: "Hello,\n",
-                        style: GoogleFonts.roboto(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: kBlackColor,
-                        )),
-                    TextSpan(
-                        text: "Masud.👋",
-                        style: GoogleFonts.roboto(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: kBlackColor,
-                        )),
-                  ])),
-            ),
-            // Spacer(),
+            // const SizedBox(
+            //   width: 10,
+            // ),
+            RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(children: [
+                  TextSpan(
+                      text: "Hello,\n",
+                      style: CustomTextStyle.subtitle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: kBlackColor,
+                      )),
+                  TextSpan(
+                      text: "Masud.👋",
+                      style: CustomTextStyle.subtitle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: kBlackColor,
+                      )),
+                ])),
           ],
         ),
         actions: [
@@ -66,12 +67,16 @@ class HomePage extends GetView<HomeViewController> {
         ],
       ),
       body: ListView(
+        shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.screenHorizontalPadding),
         children: [
           Image.asset(
             "assets/images/credit-card.png",
-            height: 340,
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,22 +90,29 @@ class HomePage extends GetView<HomeViewController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            paymentList[index]["image"],
-                            height: 20,
-                            color: kPrimaryColor,
+                          Container(
+                            alignment: Alignment.center,
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey.shade100,
+                            ),
+                            child: Image.asset(
+                              paymentList[index]["image"],
+                              height: 20,
+                              color: kPrimaryColor,
+                            ),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            paymentList[index]["title"],
-                            style: GoogleFonts.roboto(
-                              fontSize: 15,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          )
+                          Text(paymentList[index]["title"],
+                              style: CustomTextStyle.subtitle(
+                                fontSize: 15,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                              ))
                         ],
                       ),
                     )),
@@ -110,82 +122,79 @@ class HomePage extends GetView<HomeViewController> {
           ),
           Row(
             children: [
-              Text(
-                "Transactions History",
-                style: GoogleFonts.roboto(
-                  fontSize: 20,
-                  color: kBlackColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              Text("Transactions History",
+                  style: CustomTextStyle.subtitle(
+                    fontSize: 20,
+                    color: kBlackColor,
+                    fontWeight: FontWeight.w600,
+                  )),
               const Spacer(),
               TextButton(
                   onPressed: () {
                     Get.to(const TransactionsHistory());
                   },
-                  child: Text(
-                    "See all",
-                    style: GoogleFonts.roboto(
-                      fontSize: 17,
-                      color: kPrimaryColor,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ))
+                  child: Text("See all",
+                      style: CustomTextStyle.subtitle(
+                        fontSize: 17,
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w600,
+                      )))
             ],
           ),
           const SizedBox(
             height: 15,
           ),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: transactionsHistory.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 1,
-                    child: ListTile(
-                      leading: Image.network(
+          ListView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: transactionsHistory.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 1,
+                  child: ListTile(
+                    leading: Container(
+                      alignment: Alignment.center,
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.shade50,
+                      ),
+                      child: Image.network(
                         transactionsHistory[index]['image'],
                         height: 50,
                         width: 30,
                       ),
-                      title: Text(
-                        transactionsHistory[index]['title'],
-                        style: GoogleFonts.roboto(
+                    ),
+                    title: Text(transactionsHistory[index]['title'],
+                        style: CustomTextStyle.subtitle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
                           color: kBlackColor,
-                        ),
-                      ),
-                      subtitle: Text(transactionsHistory[index]['subTitle']),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            transactionsHistory[index]['amount'],
-                            style: GoogleFonts.roboto(
+                        )),
+                    subtitle: Text(transactionsHistory[index]['subTitle']),
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(transactionsHistory[index]['amount'],
+                            style: CustomTextStyle.subtitle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
                               color: kBlackColor,
-                            ),
-                          ),
-                          //Text(DateTime.now().toString()),
-                          Text(
-                            transactionsHistory[index]['time'],
-                            style: GoogleFonts.roboto(
+                            )),
+                        //Text(DateTime.now().toString()),
+                        Text(transactionsHistory[index]['time'],
+                            style: CustomTextStyle.subtitle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
+                            )),
+                      ],
                     ),
-                  );
-                }),
-          ),
+                  ),
+                );
+              }),
         ],
       ),
     );

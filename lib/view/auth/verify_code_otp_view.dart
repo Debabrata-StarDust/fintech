@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/app_color.dart';
+import '../../widgets/custom_text_style.dart';
 import '../bottom_nav_bar/nav_bar.dart';
 
 class VerifyOTPView extends StatelessWidget {
@@ -32,25 +33,22 @@ class VerifyOTPView extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Text(
-            "Verify Code",
-            style: GoogleFonts.roboto(
-              fontSize: 25,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("Verify Code",
+              style: CustomTextStyle.subHeading(
+                fontSize: 25,
+                color: kBlackColor,
+                fontWeight: FontWeight.bold,
+              )),
           const SizedBox(
             height: 7,
           ),
           Text(
-            "We send a code to (***in@fonyx.com). Enter the code here to verify your identity",
-            style: GoogleFonts.roboto(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: kBlackColor,
-            ),
-          ),
+              "We send a code to (***in@fonyx.com). Enter the code here to verify your identity",
+              style: CustomTextStyle.subHeading(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: kBlackColor,
+              )),
           const SizedBox(
             height: 55,
           ),
@@ -79,7 +77,7 @@ class VerifyOTPView extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(Bottom_Nav_Bar());
+              Get.to(const Bottom_Nav_Bar());
             },
             child: const CustomButton(title: "Submit"),
           )

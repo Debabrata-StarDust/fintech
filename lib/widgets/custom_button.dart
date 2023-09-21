@@ -14,16 +14,16 @@ class CustomButton extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
-      height: 60,
+      height: 57,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(14),
         color: kPrimaryColor,
       ),
       child: Text(
         title,
         style: GoogleFonts.roboto(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+          fontSize: 17,
+          fontWeight: FontWeight.w500,
           color: kWhiteColor,
         ),
       ),

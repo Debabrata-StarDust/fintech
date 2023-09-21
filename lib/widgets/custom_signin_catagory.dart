@@ -8,7 +8,7 @@ Container signIn_catagory(
     width: double.infinity,
     height: 50,
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: Colors.grey.shade300,
         )),
@@ -27,7 +27,7 @@ Container signIn_catagory(
           title,
           style: GoogleFonts.roboto(
             fontSize: 17,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         )
       ],

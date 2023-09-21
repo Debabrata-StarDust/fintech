@@ -1,13 +1,14 @@
-import 'package:fintech/core/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../core/app_color.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_style.dart';
 import 'bottom_nav_bar/nav_bar.dart';
 
-class SendMoneySuccessful extends StatelessWidget {
-  const SendMoneySuccessful({super.key});
+class RequestSendSuccessfully extends StatelessWidget {
+  const RequestSendSuccessfully({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class SendMoneySuccessful extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(children: [
                   TextSpan(
-                    text: "Send Money Successfully\n",
+                    text: "Request Money Successfully\n",
                     style: CustomTextStyle.subtitle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -64,7 +65,7 @@ class SendMoneySuccessful extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                        "You have successfully send the amount of \$ 420.00 to Michael Jackson (michaelJenkins@gmail.com)",
+                        "You have successfully send the request amount of \$ 420.00 to Michael Jackson (michaelJenkins@gmail.com)",
                     style: CustomTextStyle.subtitle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,

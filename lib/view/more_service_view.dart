@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../core/app_color.dart';
+import '../widgets/custom_text_style.dart';
 
 class MoreServiceView extends StatelessWidget {
   const MoreServiceView({super.key});
@@ -24,41 +25,46 @@ class MoreServiceView extends StatelessWidget {
               color: kBlackColor,
             ),
           ),
-          title: Text(
-            "More Service",
-            style: GoogleFonts.roboto(
-              fontWeight: FontWeight.w600,
-              color: kBlackColor,
-              fontSize: 20,
-            ),
-          ),
+          title: Text("More Service",
+              style: CustomTextStyle.subtitle(
+                fontWeight: FontWeight.w600,
+                color: kBlackColor,
+                fontSize: 20,
+              )),
         ),
         body: GridView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: moreServices.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, crossAxisSpacing: 7, mainAxisSpacing: 15),
+                crossAxisCount: 4, crossAxisSpacing: 7, mainAxisSpacing: 20),
             itemBuilder: (context, index) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    moreServices[index]["image"],
-                    height: 20,
-                    color: kPrimaryColor,
+                  Container(
+                    alignment:Alignment.center ,
+                    width: 60,
+                    height: 60,
+                    decoration:BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.shade100,
+                    ),
+                    child: Image.asset(
+                      moreServices[index]["image"],
+                      height: 20,
+                      color: kPrimaryColor,
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    moreServices[index]["title"],
-                    style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
+                  Text(moreServices[index]["title"],
+                      style: CustomTextStyle.subtitle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ))
                 ],
               );
             }));

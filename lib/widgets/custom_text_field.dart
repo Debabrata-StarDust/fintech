@@ -11,7 +11,7 @@ Container CustomTextForm(
     width: double.infinity,
     height: 55,
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: Colors.grey.shade400,
         )),

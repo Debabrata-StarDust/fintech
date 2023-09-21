@@ -2,6 +2,7 @@ import 'package:fintech/core/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../model/bording_model.dart';
+import '../../widgets/custom_text_style.dart';
 
 class AllPages extends StatelessWidget {
   final BoardingModel? boardingModel;
@@ -9,36 +10,29 @@ class AllPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Image.asset(
-            boardingModel!.imageUrl,
-            height: 300,
-          ),
-          RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(children: [
-                TextSpan(
-                  text: boardingModel!.title,
-                  style: GoogleFonts.roboto(
-                    fontSize: 35,
-                    color: kBlackColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(
-                  text: boardingModel!.desc,
-                  style: GoogleFonts.roboto(
-                    color: Colors.grey.shade400,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ]))
-        ],
-      ),
+    return Column(
+      children: [
+        Image.asset(
+          boardingModel!.imageUrl,
+          height: 350,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          boardingModel!.title,
+          style: CustomTextStyle.bigHeading(color: kBlackColor),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(
+          height: 27,
+        ),
+        Text(
+          boardingModel!.desc,
+          style: CustomTextStyle.subtitle(color: Colors.grey),
+          textAlign: TextAlign.center,
+        ),
+      ],
     );
   }
 }

@@ -1,19 +1,21 @@
+import 'package:fintech/view/request_send_successfully.dart';
 import 'package:fintech/view/send_money_successfull.dart';
-import 'package:fintech/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:get/get.dart';
+import '../controller/request_payment_controller.dart';
 import '../core/app_color.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/custom_text_style.dart';
 
-class SendMoneyUser extends StatelessWidget {
-  const SendMoneyUser({super.key});
+class RequestEnterAmount extends GetView<RequestPaymentController> {
+  const RequestEnterAmount({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(RequestPaymentController());
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: AppBar(
@@ -28,14 +30,12 @@ class SendMoneyUser extends StatelessWidget {
             color: kBlackColor,
           ),
         ),
-        title: Text(
-          "Send",
-          style: CustomTextStyle.subtitle(
-            fontWeight: FontWeight.w600,
-            color: kBlackColor,
-            fontSize: 20,
-          ),
-        ),
+        title: Text("Request",
+            style: CustomTextStyle.subtitle(
+              fontWeight: FontWeight.w600,
+              color: kBlackColor,
+              fontSize: 20,
+            )),
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
@@ -50,24 +50,20 @@ class SendMoneyUser extends StatelessWidget {
             height: 80,
           )),
           Center(
-            child: Text(
-              "Michael Jenkins",
-              style: CustomTextStyle.subtitle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-                color: kBlackColor,
-              ),
-            ),
+            child: Text("Michael Jenkins",
+                style: CustomTextStyle.subtitle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: kBlackColor,
+                )),
           ),
           Center(
-            child: Text(
-              "michaelJenkins@gmail.com",
-              style: CustomTextStyle.subtitle(
-                fontSize: 17,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey,
-              ),
-            ),
+            child: Text("michaelJenkins@gmail.com",
+                style: CustomTextStyle.subtitle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey,
+                )),
           ),
           Card(
             elevation: 2,
@@ -79,19 +75,17 @@ class SendMoneyUser extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Enter amount",
-                      style: CustomTextStyle.subtitle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: kBlackColor,
-                      ),
-                    ),
+                    child: Text("Enter amount",
+                        style: CustomTextStyle.subtitle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          color: kBlackColor,
+                        )),
                   ),
                   Center(
                     child: TextFormField(
                       maxLength: 7,
-                      validator: (val) {},
+                      //  validator: (val) {},
                       inputFormatters: [
                         ZeroNotAllowedFormatter(),
                       ],
@@ -107,21 +101,21 @@ class SendMoneyUser extends StatelessWidget {
                         border: InputBorder.none,
                         hintText: "Enter Amount",
                         hintStyle: CustomTextStyle.subtitle(
-                            fontSize: 35,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold),
+                            color: kBlackColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400),
                       ),
                     ),
                   ),
-                  Center(
-                      child: Text(
-                    "Available Balance : 5000.00 ",
-                    style: CustomTextStyle.subtitle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey,
-                    ),
-                  ))
+                  // Center(
+                  //     child: Text(
+                  //       "Available Balance : 5000.00 ",
+                  //       style: GoogleFonts.roboto(
+                  //         fontSize: 15,
+                  //         fontWeight: FontWeight.w400,
+                  //         color: Colors.grey,
+                  //       ),
+                  //     ))
                 ],
               ),
             ),
@@ -144,7 +138,7 @@ class SendMoneyUser extends StatelessWidget {
               ),
               child: Text(
                 "Send Money",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: kWhiteColor,
@@ -172,7 +166,7 @@ class SendMoneyUser extends StatelessWidget {
             ),
             Text(
               "Please confirm send money ",
-              style: CustomTextStyle.subtitle(
+              style: GoogleFonts.roboto(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
                 color: kBlackColor,
@@ -185,7 +179,7 @@ class SendMoneyUser extends StatelessWidget {
               leading: Image.asset("assets/images/woman.png"),
               title: Text(
                 "Michael Jackson",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
                   color: kBlackColor,
@@ -193,7 +187,7 @@ class SendMoneyUser extends StatelessWidget {
               ),
               subtitle: Text(
                 "michaelJenkins@gmail.com",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
                   color: Colors.grey,
@@ -208,7 +202,7 @@ class SendMoneyUser extends StatelessWidget {
             ListTile(
               title: Text(
                 "Amount",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: kBlackColor,
@@ -216,7 +210,7 @@ class SendMoneyUser extends StatelessWidget {
               ),
               trailing: Text(
                 "\$420.00",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: kBlackColor,
@@ -231,7 +225,7 @@ class SendMoneyUser extends StatelessWidget {
             ListTile(
               title: Text(
                 "Fee",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: kBlackColor,
@@ -239,7 +233,7 @@ class SendMoneyUser extends StatelessWidget {
               ),
               trailing: Text(
                 "\$0.0",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                   color: kBlackColor,
@@ -254,7 +248,7 @@ class SendMoneyUser extends StatelessWidget {
             ListTile(
               title: Text(
                 "Total Amount",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: kPrimaryColor,
@@ -262,7 +256,7 @@ class SendMoneyUser extends StatelessWidget {
               ),
               trailing: Text(
                 "\$420.00",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: kPrimaryColor,
@@ -274,7 +268,7 @@ class SendMoneyUser extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  Get.to(const SendMoneySuccessful());
+                  Get.to(const RequestSendSuccessfully());
                 },
                 child: const CustomButton(title: "Confirm")),
             const SizedBox(
@@ -291,7 +285,7 @@ class SendMoneyUser extends StatelessWidget {
                   )),
               child: Text(
                 "Cancel",
-                style: CustomTextStyle.subtitle(
+                style: GoogleFonts.roboto(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: kPrimaryColor,

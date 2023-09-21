@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_signin_catagory.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/custom_text_style.dart';
 import 'login_view.dart';
 
 class SignUpView extends StatefulWidget {
@@ -42,22 +43,18 @@ class _SignUpViewState extends State<SignUpView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Already have an account?",
-              style: GoogleFonts.roboto(
-                fontSize: 17,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            Text("Already have an account?",
+                style: CustomTextStyle.subtitle(
+                  color: kBlackColor,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                )),
             TextButton(
                 onPressed: () {
-                  Get.to(LoginView());
+                  Get.to(const LoginView());
                 },
                 child: Text("Login",
-                    style: GoogleFonts.roboto(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                    )))
+                    style: CustomTextStyle.subtitle(color: kPrimaryColor)))
           ],
         ),
       ),
@@ -65,36 +62,22 @@ class _SignUpViewState extends State<SignUpView> {
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
-          Text(
-            "Create an account",
-            style: GoogleFonts.roboto(
-              fontSize: 25,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("Create an account",
+              style: CustomTextStyle.subtitle(
+                color: kBlackColor,
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+              )),
           const SizedBox(
             height: 7,
           ),
-          Text(
-            "Create an fonyx and enjoy all service",
-            style: GoogleFonts.roboto(
-              fontSize: 17,
-              color: kBlackColor,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+          Text("Create an fonyx and enjoy all service",
+              style: CustomTextStyle.subtitle(color: kBlackColor)),
           const SizedBox(
             height: 20,
           ),
-          Text(
-            "Full Name",
-            style: GoogleFonts.roboto(
-              fontSize: 17,
-              color: kBlackColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Text("Full Name",
+              style: CustomTextStyle.subHeading(color: kBlackColor)),
           const SizedBox(
             height: 4,
           ),
@@ -105,14 +88,7 @@ class _SignUpViewState extends State<SignUpView> {
           const SizedBox(
             height: 10,
           ),
-          Text(
-            "Email",
-            style: GoogleFonts.roboto(
-              fontSize: 17,
-              color: kBlackColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Text("Email", style: CustomTextStyle.subHeading(color: kBlackColor)),
           const SizedBox(
             height: 4,
           ),
@@ -123,14 +99,8 @@ class _SignUpViewState extends State<SignUpView> {
           const SizedBox(
             height: 10,
           ),
-          Text(
-            "Password",
-            style: GoogleFonts.roboto(
-              fontSize: 17,
-              color: kBlackColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Text("Password",
+              style: CustomTextStyle.subHeading(color: kBlackColor)),
           const SizedBox(
             height: 4,
           ),
@@ -143,7 +113,7 @@ class _SignUpViewState extends State<SignUpView> {
           ),
           InkWell(
             onTap: () {
-              Get.to(VerifyOTPView());
+              Get.to(const VerifyOTPView());
             },
             child: const CustomButton(
               title: 'Sign up',
@@ -168,25 +138,25 @@ class _SignUpViewState extends State<SignUpView> {
                   text: TextSpan(children: [
                     TextSpan(
                         text: "I agree to the company ",
-                        style: GoogleFonts.roboto(
+                        style: CustomTextStyle.subtitle(
                             color: kBlackColor,
                             fontSize: 15,
-                            fontWeight: FontWeight.w500)),
+                            fontWeight: FontWeight.w400)),
                     TextSpan(
-                        text: "Term and Services ",
-                        style: GoogleFonts.roboto(
+                        text: "Term of Services ",
+                        style: CustomTextStyle.subtitle(
                             color: kPrimaryColor,
                             fontSize: 16,
                             fontWeight: FontWeight.w600)),
                     TextSpan(
                         text: "and ",
-                        style: GoogleFonts.roboto(
+                        style: CustomTextStyle.subtitle(
                             color: kBlackColor,
                             fontSize: 15,
-                            fontWeight: FontWeight.w500)),
+                            fontWeight: FontWeight.w400)),
                     TextSpan(
                         text: "Privacy Policy",
-                        style: GoogleFonts.roboto(
+                        style: CustomTextStyle.subtitle(
                             color: kPrimaryColor,
                             fontSize: 16,
                             fontWeight: FontWeight.w600))
@@ -196,54 +166,52 @@ class _SignUpViewState extends State<SignUpView> {
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                width: 30,
+                width: 37,
               ),
               Expanded(
                 child: Divider(
                   thickness: 2.0,
-                  color: Colors.grey.shade100,
+                  color: Colors.grey.shade300,
                 ),
               ),
               const SizedBox(
                 width: 7,
               ),
-              Text(
-                "Or sign up with",
-                style: GoogleFonts.roboto(
-                  fontSize: 15,
-                  color: kBlackColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              Text("Or sign up with",
+                  style: CustomTextStyle.subtitle(
+                    fontSize: 15,
+                    color: kBlackColor,
+                    fontWeight: FontWeight.w400,
+                  )),
               const SizedBox(
                 width: 7,
               ),
               Expanded(
                 child: Divider(
                   thickness: 2.0,
-                  color: Colors.grey.shade100,
+                  color: Colors.grey.shade300,
                 ),
               ),
               const SizedBox(
-                width: 30,
+                width: 37,
               ),
             ],
           ),
           const SizedBox(
-            height: 25,
+            height: 30,
           ),
           signIn_catagory(
               imagePath: "assets/icons/google.png",
               title: "Sign in with Google"),
           const SizedBox(
-            height: 10,
+            height: 15,
           ),
           signIn_catagory(
               imagePath: "assets/icons/twitter.png",
