@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../../controller/bording_controller.dart';
 import '../../core/app_color.dart';
 import '../../widgets/custom_padding.dart';
+import '../../widgets/custom_text_style.dart';
 import '../auth/login_view.dart';
 import 'pages.dart';
 
@@ -15,6 +16,7 @@ class OnboardView extends GetView<BoardingController> {
   Widget build(BuildContext context) {
     Get.put(BoardingController());
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kWhiteColor,
       appBar: AppBar(
         elevation: 0.0,
@@ -24,7 +26,7 @@ class OnboardView extends GetView<BoardingController> {
               Get.to(const LoginView());
             },
             child: Text("Skip",
-                style: GoogleFonts.roboto(
+                style: CustomTextStyle.title(
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                   color: kPrimaryColor,
@@ -38,7 +40,7 @@ class OnboardView extends GetView<BoardingController> {
         ),
         child: Column(
           children: [
-             const SizedBox(
+            const SizedBox(
               height: 40,
             ),
             SizedBox(
@@ -95,22 +97,18 @@ class OnboardView extends GetView<BoardingController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           controller.isLast.value == true
-                              ? Text(
-                                  "Get Started",
-                                  style: GoogleFonts.roboto(
+                              ? Text("Get Started",
+                                  style: CustomTextStyle.title(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w400,
                                     color: kWhiteColor,
-                                  ),
-                                )
-                              : Text(
-                                  "Next",
-                                  style: GoogleFonts.roboto(
+                                  ))
+                              : Text("Next",
+                                  style: CustomTextStyle.title(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w400,
                                     color: kWhiteColor,
-                                  ),
-                                ),
+                                  )),
                           const SizedBox(
                             width: 7,
                           ),

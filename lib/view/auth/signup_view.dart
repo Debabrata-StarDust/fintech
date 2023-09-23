@@ -2,7 +2,6 @@ import 'package:fintech/core/app_color.dart';
 import 'package:fintech/view/auth/verify_code_otp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_signin_catagory.dart';
@@ -23,6 +22,7 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kWhiteColor,
       appBar: AppBar(
         elevation: 0.0,

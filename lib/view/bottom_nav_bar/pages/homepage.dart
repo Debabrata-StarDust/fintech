@@ -3,19 +3,18 @@ import 'package:fintech/view/tarnsactions_history.dart';
 import 'package:fintech/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../controller/home_view_controller.dart';
 import '../../../model/demo_data.dart';
 import '../../../widgets/custom_text_style.dart';
 import '../../notification_view.dart';
 
-class HomePage extends GetView<HomeViewController> {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeViewController());
+    final HomeViewController controller = Get.put(HomeViewController());
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: AppBar(
@@ -64,7 +63,7 @@ class HomePage extends GetView<HomeViewController> {
               icon: Image.asset(
                 "assets/icons/bell.png",
                 height: 30,
-                color: kPrimaryColor,
+                color: kBlackColor,
               ),
             ),
           )
@@ -148,57 +147,65 @@ class HomePage extends GetView<HomeViewController> {
           const SizedBox(
             height: 15,
           ),
-          ListView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: transactionsHistory.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 1,
-                  child: ListTile(
-                    leading: Container(
-                      alignment: Alignment.center,
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade50,
-                      ),
-                      child: Image.network(
-                        transactionsHistory[index]['image'],
-                        height: 50,
-                        width: 30,
-                      ),
-                    ),
-                    title: Text(transactionsHistory[index]['title'],
-                        style: CustomTextStyle.subtitle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: kBlackColor,
-                        )),
-                    subtitle: Text(transactionsHistory[index]['subTitle']),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(transactionsHistory[index]['amount'],
-                            style: CustomTextStyle.subtitle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              color: kBlackColor,
-                            )),
-                        //Text(DateTime.now().toString()),
-                        Text(transactionsHistory[index]['time'],
-                            style: CustomTextStyle.subtitle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey,
-                            )),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+          Obx(
+            () => controller.isLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: controller.productList.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 1,
+                        child: ListTile(
+                          leading: Container(
+                            alignment: Alignment.center,
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey.shade50,
+                            ),
+                            // child: Image.network(
+                            //   controller.productList[index].total,
+                            //   height: 50,
+                            //   width: 30,
+                            // ),
+                          ),
+                          title: Text(
+                              controller.productList[index].products.toString(),
+                              style: CustomTextStyle.subtitle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: kBlackColor,
+                              )),
+                          subtitle:
+                              Text(transactionsHistory[index]['subTitle']),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(transactionsHistory[index]['amount'],
+                                  style: CustomTextStyle.subtitle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: kBlackColor,
+                                  )),
+                              //Text(DateTime.now().toString()),
+                              Text(transactionsHistory[index]['time'],
+                                  style: CustomTextStyle.subtitle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+          )
         ],
       ),
     );

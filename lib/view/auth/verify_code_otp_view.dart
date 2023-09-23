@@ -2,7 +2,6 @@ import 'package:fintech/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/app_color.dart';
 import '../../widgets/custom_text_style.dart';
@@ -14,6 +13,7 @@ class VerifyOTPView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kWhiteColor,
       appBar: AppBar(
         elevation: 0.0,
