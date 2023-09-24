@@ -1,8 +1,11 @@
-import 'package:dio/dio.dart';
-import 'package:fintech/model/products_model.dart';
+import 'dart:async';
+
+import 'package:fintech/services/all_products_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
+import '../model/products_model.dart';
 import '../view/more_service_view.dart';
 import '../view/request_payment.dart';
 import '../view/transfer_money_view.dart';
@@ -28,22 +31,26 @@ class HomeViewController extends GetxController {
   }
 
   String url = 'https://dummyjson.com/products';
+  static var client = http.Client();
 
-  getProducts() async {
-    isLoading.value = false;
-    try {
-      var responce = await Dio().get(url);
-      final productList = ProductsJson.fromJson(responce.data);
-      print('ProductsList$productList');
-      print("response$responce");
-    } catch (e) {}
-  }
-  // void productsList() async {
-  //   var products = await AllProducts.fetchProducts();
-  //   if (products != null) {
-  //     productList.value = products;
+  // getProducts() async {
+  //   isLoading.value = false;
+  //   try {
+  //     var response = await Dio().get(url);
+  //     final productList = ProductsJson.fromJson(response.data);
+  //     print('ProductsList$productList');
+  //     print("response$response");
+  //   } catch (e) {
+  //     print(e.toString());
   //   }
   // }
+  Productjson? productJsonModel;
+  void productsList() async {
+    // productJosonModel = await AllProducts.fetchProducts();
+    // if (products != null) {
+    //   productList.value = products;
+    // }
+  }
   // Future<List<ProductsJson>> getAllProducts() async {
   //   isLoading.value = true;
   //   try {
@@ -75,12 +82,20 @@ class HomeViewController extends GetxController {
   //   }
   // }
 
+  Productjson? addProducts;
+
   @override
   void onInit() {
     // Get called when controller is created
     super.onInit();
+    Timer.periodic(const Duration(seconds: 1), (timer) async {
+      if (timer.tick == 1) {
+        addProducts = await AllProducts().getAllProducts();
+      }
+    });
+    print(addProducts);
     // getAllProducts();
-    getProducts();
+    //  productsList();
   }
 }
 

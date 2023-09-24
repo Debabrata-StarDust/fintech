@@ -1,4 +1,5 @@
 import 'package:fintech/core/app_color.dart';
+import 'package:fintech/services/all_products_services.dart';
 import 'package:fintech/view/tarnsactions_history.dart';
 import 'package:fintech/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
@@ -155,7 +156,7 @@ class HomePage extends StatelessWidget {
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
-                    itemCount: controller.productList.length,
+                    itemCount: AllProducts().productsData.length,
                     itemBuilder: (context, index) {
                       return Card(
                         elevation: 1,
@@ -168,19 +169,19 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.grey.shade50,
                             ),
-                            // child: Image.network(
-                            //   controller.productList[index].total,
-                            //   height: 50,
-                            //   width: 30,
-                            // ),
+                            child: Image.network(
+                              AllProducts().productsData[index]['images'],
+                              height: 50,
+                              width: 30,
+                            ),
                           ),
-                          title: Text(
-                              controller.productList[index].products.toString(),
-                              style: CustomTextStyle.subtitle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: kBlackColor,
-                              )),
+                          title:
+                              Text(AllProducts().productsData[index]['title'],
+                                  style: CustomTextStyle.subtitle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: kBlackColor,
+                                  )),
                           subtitle:
                               Text(transactionsHistory[index]['subTitle']),
                           trailing: Column(
