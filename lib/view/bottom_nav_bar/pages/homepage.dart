@@ -1,3 +1,4 @@
+import 'package:fintech/controller/product_controller.dart';
 import 'package:fintech/core/app_color.dart';
 import 'package:fintech/services/all_products_services.dart';
 import 'package:fintech/view/tarnsactions_history.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import '../../../controller/home_view_controller.dart';
 import '../../../model/demo_data.dart';
 import '../../../widgets/custom_text_style.dart';
+import '../../../widgets/productsList_card_widgets.dart';
 import '../../notification_view.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,7 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeViewController controller = Get.put(HomeViewController());
+    final ProductController productController = Get.put(ProductController());
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: AppBar(
@@ -88,7 +90,7 @@ class HomePage extends StatelessWidget {
                 paymentList.length,
                 (index) => GestureDetector(
                       onTap: () {
-                        controller.listOfTestNavigation(index);
+                        // controller.listOfTestNavigation(index);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -149,61 +151,17 @@ class HomePage extends StatelessWidget {
             height: 15,
           ),
           Obx(
-            () => controller.isLoading.value
+            () => productController.isLoading.value
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
-                    itemCount: AllProducts().productsData.length,
+                    itemCount: productController.productList.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        elevation: 1,
-                        child: ListTile(
-                          leading: Container(
-                            alignment: Alignment.center,
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey.shade50,
-                            ),
-                            child: Image.network(
-                              AllProducts().productsData[index]['images'],
-                              height: 50,
-                              width: 30,
-                            ),
-                          ),
-                          title:
-                              Text(AllProducts().productsData[index]['title'],
-                                  style: CustomTextStyle.subtitle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: kBlackColor,
-                                  )),
-                          subtitle:
-                              Text(transactionsHistory[index]['subTitle']),
-                          trailing: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(transactionsHistory[index]['amount'],
-                                  style: CustomTextStyle.subtitle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: kBlackColor,
-                                  )),
-                              //Text(DateTime.now().toString()),
-                              Text(transactionsHistory[index]['time'],
-                                  style: CustomTextStyle.subtitle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey,
-                                  )),
-                            ],
-                          ),
-                        ),
+                      return ProductsCardsWidgets(
+                        product: productController.productList[index],
                       );
                     }),
           )

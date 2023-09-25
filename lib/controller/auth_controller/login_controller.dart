@@ -30,6 +30,7 @@ class LoginController extends GetxController {
             snackPosition: SnackPosition.BOTTOM);
         Get.to(const Bottom_Nav_Bar());
         debugPrint(data['token']);
+        var storeToken = data['token'];
         // debugPrint("account");
       } else {
         Get.snackbar('Error', 'You are not register',

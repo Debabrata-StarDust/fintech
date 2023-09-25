@@ -1,58 +1,46 @@
 import 'package:fintech/view/auth/login_view.dart';
 import 'package:fintech/view/bording/onbording_view.dart';
+import 'package:fintech/view/bottom_nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'controller/app_shared_preference_controller.dart';
 import 'core/app_color.dart';
 
 int? showHome;
+int? setHome;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  // final navigatorKey = GlobalKey<NavigatorState>();
-  // Create a share preferences instance
+
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  // final sharedPreferencesService = await AppSharedPreferences.instance;
-  // set the variable get the date of share preferences
+
   showHome = sharedPreferences.getInt('showHome');
   await sharedPreferences.setInt('showHome', 1);
-  runApp(const MyApp(
-      // navigatorKey: navigatorKey,
-      // showHome: showHome,
-      // sharedPreferencesService: sharedPreferencesService,
-      ));
+  setHome = sharedPreferences.getInt('setHome');
+  await sharedPreferences.setInt('setHome', 2);
+  // alreadyLogin = sharedPreferences.getString('alreadyLogin');
+  // await sharedPreferences.setString("alreadyLogin", '');
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  // final GlobalKey<NavigatorState> navigatorKey;
-  // final bool showHome;
-  // final AppSharedPreferences sharedPreferencesService;
   const MyApp({
     super.key,
-    // required this.navigatorKey,
-    // required this.showHome,
-    // required this.sharedPreferencesService,
   });
+
+  // get sharedPreferencesService => null;
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   if (widget.sharedPreferencesService
-  //           .getString(key: AppSharedPreferencesKeys.MID) !=
-  //       null) {
-  //     // onUserLogin();
-  //   }
-  // }
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -64,9 +52,11 @@ class _MyAppState extends State<MyApp> {
           appBarTheme: const AppBarTheme(
             color: kWhiteColor,
           )),
-      home: showHome == 0 || showHome == null
-          ? const OnboardView()
-          : const LoginView(),
+      home: setHome != null
+          ? const Bottom_Nav_Bar()
+          : showHome == 0 || showHome == null
+              ? const OnboardView()
+              : const LoginView(),
     );
   }
 }
