@@ -14,8 +14,9 @@ class ProductController extends GetxController {
   var productName = ''.obs;
   RxString description = ''.obs;
   var images = ''.obs;
-   var price = ''.obs;
-  var rating = ''.obs;
+  var price = ''.obs;
+  var discountPercentage = 0.0.obs;
+  RxDouble rating = 0.0.obs;
 
   // All products list functions
 
@@ -54,8 +55,9 @@ class ProductController extends GetxController {
         productName.value = data.title;
         description.value = data.description.toString();
         images.value = data.images[0];
-         price.value = data.price.toString();
-        rating.value = data.rating.toString();
+        price.value = data.price.toString();
+        rating.value = data.rating;
+        discountPercentage.value = data.discountPercentage;
 
         // then navigate the screen on details view
         Get.to(() => DetailsView());

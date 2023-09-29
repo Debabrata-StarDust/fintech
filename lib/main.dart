@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'controller/app_shared_preference_controller.dart';
 import 'core/app_color.dart';
 
 int? showHome;
@@ -48,10 +47,12 @@ class _MyAppState extends State<MyApp> {
       // navigatorKey: widget.navigatorKey,
       title: 'FIN_TECH',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          appBarTheme: const AppBarTheme(
-            color: kWhiteColor,
-          )),
+        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.black),
+          color: kWhiteColor,
+        ),
+      ),
       home: setHome != null
           ? const Bottom_Nav_Bar()
           : showHome == 0 || showHome == null
